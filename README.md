@@ -19,6 +19,7 @@ This project analyzes road traffic videos to detect vehicles, track their moveme
 | **Visual Feedback** | Bounding boxes, IDs, trails, line counters, FPS |
 
 ---
+
 ## System Architecture
 
 ```mermaid
