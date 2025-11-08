@@ -28,16 +28,17 @@ graph TD
     B --> C{Motion Detection}
     C --> D[Contour Extraction]
     D --> E[Bounding Boxes]
-    E --> F[Tracker.update()]
-    F --> G[ID Assignment]
-    G --> H[Line Interaction Check]
+    E --> F[Tracker Update]
+    F --> G[Assign ID]
+    G --> H[Check Line Crossing]
     H --> I{Entry or Exit?}
     I -->|Entry| J[Log Entry Time]
     I -->|Exit| K[Log Exit Time + Duration]
-    J & K --> L[Pandas DataFrame]
-    L --> M[CSV Export]
-    E --> N[Visualization Layer]
-    N --> O[OpenCV Display]
+    J --> L[Pandas DataFrame]
+    K --> L
+    L --> M[Export CSV]
+    E --> N[Draw Bounding Box + ID]
+    N --> O[Display Frame]
 ```
 
 ---
