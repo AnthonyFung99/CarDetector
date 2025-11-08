@@ -23,17 +23,24 @@ This project analyzes road traffic videos to detect vehicles, track their moveme
 ## System Architecture
 
 ```mermaid
-flowchart LR
-A[Video Input] 
-B[Frame Preprocessing]
-C[Motion Detection (Frame Differencing + Threshold + Dilate)]
-D[Contour Extraction] 
-E[Custom Object Tracker]
-F[Assign IDs & Track Movement]
-G[Line Crossing Logic + Count Vehicles]
-H[Save Logs to CSV]
-I[Visual Output + Counters]
-```
+graph TD
+    A[Video Input] --> B[Frame Preprocessing]
+    B --> C{Motion Detection}
+    C --> D[Contour Extraction]
+    D --> E[Bounding Boxes]
+    E --> F[Tracker.update()]
+    F --> G[ID Assignment]
+    G --> H[Line Interaction Check]
+    H --> I{Entry or Exit?}
+    I -->|Entry| J[Log Entry Time]
+    I -->|Exit| K[Log Exit Time + Duration]
+    J & K --> L[Pandas DataFrame]
+    L --> M[CSV Export]
+    E --> N[Visualization Layer]
+    N --> O[OpenCV Display]
+
+---
+
 ## Usage
 
 - Place your video as **intersection_video.mp4 in the root**.
@@ -42,6 +49,8 @@ I[Visual Output + Counters]
 - Press ESC to start processing.
 - **Press q to quit and save results**.
 - Output: intersection_video_table.csv
+
+---
 
 ## Future Enhancements
 
